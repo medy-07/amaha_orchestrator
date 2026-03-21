@@ -5,6 +5,11 @@ class Job < ApplicationRecord
 
   belongs_to :client
 
+  before_create :set_id
+
+  enum status: { queued: 0, running: 1, completed: 2, failed: 3, stalled: 4 }
+  enum priority: { low: 0, medium: 1, high: 2 }
+
   aasm column: :status do
     state :queued, initial: true
     state :running
@@ -12,4 +17,9 @@ class Job < ApplicationRecord
     state :failed
     state :stalled
   end
+
+  private
+    def set_id
+      self.id ||= SecureRandom.uuid
+    end
 end

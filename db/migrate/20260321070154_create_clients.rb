@@ -2,7 +2,7 @@
 
 class CreateClients < ActiveRecord::Migration[7.1]
   def change
-    create_table :clients do |t|
+    create_table :clients, id: :string do |t|
       t.integer :concurrency_limit, default: 5, null: false
 
       t.timestamps

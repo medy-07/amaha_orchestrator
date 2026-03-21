@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_260_321_071_454) do
-  create_table 'clients', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.integer 'concurrency_limit', default: 5, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema[7.1].define(version: 2026_03_21_071454) do
+  create_table "clients", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "concurrency_limit", default: 5, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'jobs', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.bigint 'client_id', null: false
-    t.string 'priority', null: false
-    t.string 'workload'
-    t.string 'status', default: 'queued', null: false
-    t.datetime 'last_heartbeat_at'
-    t.integer 'retry_count', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['client_id'], name: 'index_jobs_on_client_id'
+  create_table "jobs", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "client_id", null: false
+    t.integer "priority", null: false
+    t.string "workload"
+    t.integer "status", default: 0, null: false
+    t.datetime "last_heartbeat_at"
+    t.integer "retry_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_jobs_on_client_id"
   end
 
-  add_foreign_key 'jobs', 'clients'
+  add_foreign_key "jobs", "clients"
 end
