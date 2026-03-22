@@ -1,3 +1,16 @@
+## Setup Instructions
+
+1. Clone the repo
+2. Create `.env` file
+3. Add required environment variables:
+   - DB credentials
+   - REDIS_URL
+4. Run:
+   bundle install
+   rails db:create db:migrate
+   bundle exec sidekiq
+   rails s
+   
 # README
 
 This README would normally document whatever steps are necessary to get the
