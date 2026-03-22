@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_21_071454) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_22_150143) do
   create_table "clients", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "concurrency_limit", default: 5, null: false
     t.datetime "created_at", null: false
@@ -26,7 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_21_071454) do
     t.integer "retry_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["client_id", "status"], name: "index_jobs_on_client_id_and_status"
     t.index ["client_id"], name: "index_jobs_on_client_id"
+    t.index ["status", "priority"], name: "index_jobs_on_status_and_priority"
   end
 
   add_foreign_key "jobs", "clients"

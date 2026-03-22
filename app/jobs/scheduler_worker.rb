@@ -7,6 +7,9 @@ class SchedulerWorker
     clients_jobs.each do |client_id, jobs|
       process_client_jobs(client_id, jobs)
     end
+
+    # Scheduling new job starts without requiring a restart
+    SchedulerWorker.perform_in(1.second)
   end
 
   private
@@ -14,6 +17,7 @@ class SchedulerWorker
     def fetch_jobs_grouped_by_client
       Job.queued
         .order(priority: :desc, created_at: :asc)
+        .limit(200)
         .group_by(&:client_id)
     end
 

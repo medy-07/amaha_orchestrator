@@ -64,9 +64,6 @@ class JobExecutorWorker
         return unless job.running?
 
         job.complete!
-
-        # Scheduling new job starts without requiring a restart
-        SchedulerWorker.perform_async
       end
     end
 
