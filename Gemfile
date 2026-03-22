@@ -16,6 +16,7 @@ gem "sidekiq"
 gem "redis"
 # State machine
 gem "aasm"
+gem 'sidekiq-cron'
 
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]

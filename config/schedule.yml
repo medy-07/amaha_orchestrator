@@ -1,0 +1,4 @@
+stalled_job_detector: 
+  cron: "*/30 * * * * *"
+  class: "StalledJobDetectorWorker"
+  queue: default
