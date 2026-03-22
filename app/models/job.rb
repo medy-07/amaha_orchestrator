@@ -16,6 +16,22 @@ class Job < ApplicationRecord
     state :completed
     state :failed
     state :stalled
+
+    event :start do
+      transitions from: :queued, to: :running
+    end
+
+    event :complete do
+      transitions from: :running, to: :completed
+    end
+
+    event :fail do
+      transitions from: :running, to: :failed
+    end
+
+    event :stall do
+      transitions from: :running, to: :stalled
+    end
   end
 
   private
